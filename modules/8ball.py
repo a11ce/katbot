@@ -13,6 +13,6 @@ sayings = [
 ]
 
 
-def respondOnText(messageText):
+def respondOnText(messageText, messageData):
     if "8ball" in messageText and "?" in messageText:
         return "🎱 {} ✨".format(random.choice(sayings))

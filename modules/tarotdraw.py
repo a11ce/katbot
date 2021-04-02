@@ -9,7 +9,7 @@ INFO = {
 cards = tarot.loadCards("modules/tarot/cards/cards.csv")
 
 
-def respondOnText(messageText):
+def respondOnText(messageText, messageData):
     if "tarot draw" in messageText:
         count = int(messageText.split("tarot draw")[1].split()[0])
         s = "```\n"

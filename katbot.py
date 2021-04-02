@@ -39,7 +39,8 @@ async def on_message(message):
 
     for module in modules:
         try:
-            if (resp := module.respondOnText(message.content)):
+            if (resp := module.respondOnText(message.content,
+                                             {'sender': message.author})):
                 await message.channel.send(resp)
         except discord.errors.HTTPException:
             await message.channel.send(
@@ -47,8 +48,8 @@ async def on_message(message):
         except:
             logging.exception("during respondOnText")
             await message.channel.send(
-                "something just went wrong <@298235229095723008> check my logs pls"
-            )
+                "something just went wrong in module {} <@298235229095723008> check my logs pls"
+                .format(module.INFO['name']))
 
     if "kathelp" in message.content:
         s = "Hi! I'm katbot. I'm entirely modular (except for responding to kathelp), here's what I'm currently running:\n```yaml\n"

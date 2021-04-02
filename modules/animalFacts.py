@@ -29,7 +29,7 @@ animals = {
 baseURL = "https://and-here-is-my-code.glitch.me/facts/"
 
 
-def respondOnText(messageText):
+def respondOnText(messageText, messageData):
     for animal, endpoint in animals.items():
         if animal in messageText.lower():
             return list(requests.get(baseURL + endpoint).json().values())[0]
