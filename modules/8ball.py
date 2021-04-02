@@ -1,6 +1,6 @@
 import random
 
-INFO = {'name': '8ball', 'desc': 'responds to 8ball?'}
+INFO = {'name': '8ball', 'desc': 'responds to 8ball <question>?'}
 
 sayings = [
     "it is certain", "it is decidedly so", "without a doubt",
@@ -14,5 +14,5 @@ sayings = [
 
 
 def respondOnText(messageText):
-    if "8ball?" in messageText:
+    if "8ball" in messageText and "?" in messageText:
         return "🎱 {} ✨".format(random.choice(sayings))
