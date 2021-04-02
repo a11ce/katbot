@@ -9,7 +9,7 @@
 
 ## Contributing a module
 
-- Download with `git clone git@github.com:a11ce/katbot.git`
+- Download with `git clone https://github.com/a11ce/katbot.git`
 - Grab submodules with `git submodule update --init --recursive`.
 - Make a file `secret.py` containing `discordKey = "your testing bot token"` to run your own copy of KatBot.
 - Install dependencies as needed if KatBot complains.
