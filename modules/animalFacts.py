@@ -7,7 +7,7 @@ animals = {
     'raccoon': 'raccoon',
     'geese': 'goose',
     'sheep': 'sheep',
-    'dingo:': 'dingo',
+    'dingo': 'dingo',
     'camel': 'camel',
     'crab': 'crab',
     'cow': 'cow',
