@@ -1,3 +1,3 @@
 [submodule "modules/tarot"]
 	path = modules/tarot
-	url = git@github.com:a11ce/tarot.git
+	url = https://github.com/a11ce/tarot.git
