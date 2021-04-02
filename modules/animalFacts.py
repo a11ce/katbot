@@ -33,4 +33,3 @@ def respondOnText(messageText, messageData):
     for animal, endpoint in animals.items():
         if animal in messageText.lower():
             return list(requests.get(baseURL + endpoint).json().values())[0]
-    return False

@@ -16,4 +16,3 @@ def respondOnText(messageText, messageData):
         for _ in range(count):
             s += "{}\n\n".format(tarot.as60WidthLines(random.choice(cards)))
         return s + "\n```"
-    return False

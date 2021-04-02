@@ -20,5 +20,3 @@ def respondOnText(messageText, messageData):
             if any(trigger in messageText for trigger in triggers):
                 return "{} <@{}>!".format(random.choice(responses),
                                           messageData['sender'].id)
-
-    return False
