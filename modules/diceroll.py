@@ -17,7 +17,15 @@ def respondOnText(messageText):
     elif (n := re.findall("([0-9]+)dF", messageText)):
         n = int(n[0])
         diceRolled = [random.randint(-1, 1) for _ in range(n)]
-        word = fudge_words[sum(diceRolled) + 3]
+
+        fudge_offset = sum(diceRolled) + 3
+        if fudge_offset < 0:
+            word = "Sub-terrible"
+        elif fudge_offset >= 7:
+            word = "**LEGENDARY**"
+        else:
+            word = fudge_words[fudge_offset]
+
         return "`{}`\n{}!".format(
             " ".join([["-", " ", "+"][d + 1] for d in diceRolled]), word)
     return False
