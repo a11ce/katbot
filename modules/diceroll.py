@@ -1,7 +1,10 @@
 import re
 import random
 
-INFO = {'name': 'diceroll', 'desc': 'rolls on NdM or fudge on NdF'}
+INFO = {
+    'name': 'diceroll',
+    'desc': 'rolls on r{N}d{M}, where M can be "F" for fudge'
+}
 
 fudge_words = [
     "Terrible", "Poor", "Mediocre", "Fair", "Good", "Great", "Superb"
@@ -9,24 +12,33 @@ fudge_words = [
 
 
 def respondOnText(messageText):
-    if (found := re.findall("([0-9]+)d([0-9]+)", messageText)):
-        found = list(map(int, found[0]))
-        diceRolled = [random.randint(1, found[1]) for _ in range(found[0])]
-        return "Rolled {} for a total of {}".format(diceRolled,
-                                                    sum(diceRolled))
-    elif (n := re.findall("([0-9]+)dF", messageText)):
-        n = int(n[0])
-        diceRolled = [random.randint(-1, 1) for _ in range(n)]
+    # matches: number of dice, dice size or F, addition with sign
+    if (matched := re.findall("r([0-9]+)d([0-9]+|F)(\+[0-9]+)?", messageText)):
+        matched = matched[0]
+        if matched[1] == "F":
+            diceRolled = [
+                random.randint(-1, 1) for _ in range(int(matched[0]))
+            ]
+            rolledSum = sum(diceRolled)
+            fudge_offset = sum(diceRolled) + (int(matched[2])
+                                              if matched[2] else 0)
+            if fudge_offset < -3:
+                word = "Sub-terrible"
+            elif fudge_offset > 3:
+                word = "**LEGENDARY**"
+            else:
+                word = fudge_words[fudge_offset + 3]
+            return "`{}`\n{}! ({}{})".format(
+                " ".join([["-", " ", "+"][d + 1] for d in diceRolled]), word,
+                sum(diceRolled), matched[2])
 
-        fudge_offset = sum(diceRolled)
-        if fudge_offset < -3:
-            word = "Sub-terrible"
-        elif fudge_offset > 3:
-            word = "**LEGENDARY**"
         else:
-            word = fudge_words[fudge_offset + 3]
-
-        return "`{}`\n{}! ({})".format(
-            " ".join([["-", " ", "+"][d + 1] for d in diceRolled]), word,
-            sum(diceRolled))
+            diceRolled = [
+                random.randint(1, int(matched[1]))
+                for _ in range(int(matched[0]))
+            ]
+            total = sum(diceRolled) + (int(matched[2]) if matched[2] else 0)
+            return "`{}`\n**{}** ({}{})".format(" ".join(map(str, diceRolled)),
+                                                total, sum(diceRolled),
+                                                matched[2])
     return False
