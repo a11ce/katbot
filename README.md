@@ -14,10 +14,6 @@
 
 - Say 'kathelp' for a list of running modules and their descriptions.
 
-## Current modules
-- `diceroll`: runs on NdM, sends individual dice and sum.
-- `tarot`: runs on tarot draw N, sends drawn cards.
-
 --- 
 
 All contributions are welcome by pull request or issue.
