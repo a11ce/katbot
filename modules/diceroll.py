@@ -18,14 +18,15 @@ def respondOnText(messageText):
         n = int(n[0])
         diceRolled = [random.randint(-1, 1) for _ in range(n)]
 
-        fudge_offset = sum(diceRolled) + 3
-        if fudge_offset < 0:
+        fudge_offset = sum(diceRolled)
+        if fudge_offset < -3:
             word = "Sub-terrible"
-        elif fudge_offset >= 7:
+        elif fudge_offset > 3:
             word = "**LEGENDARY**"
         else:
-            word = fudge_words[fudge_offset]
+            word = fudge_words[fudge_offset + 3]
 
-        return "`{}`\n{}!".format(
-            " ".join([["-", " ", "+"][d + 1] for d in diceRolled]), word)
+        return "`{}`\n{}! ({})".format(
+            " ".join([["-", " ", "+"][d + 1] for d in diceRolled]), word,
+            sum(diceRolled))
     return False
