@@ -2,6 +2,7 @@ import importlib
 import os
 import discord
 import secret
+import logging
 
 
 def log(text):
@@ -27,6 +28,8 @@ client = discord.Client()
 @client.event
 async def on_ready():
     log('We have logged in as {0.user}'.format(client))
+    await client.change_presence(activity=discord.Activity(
+        type=discord.ActivityType.listening, name="kathelp"))
 
 
 @client.event
@@ -35,8 +38,14 @@ async def on_message(message):
         return
 
     for module in modules:
-        if (resp := module.respondOnText(message.content)):
-            await message.channel.send(resp)
+        try:
+            if (resp := module.respondOnText(message.content)):
+                await message.channel.send(resp)
+        except:
+            logging.exception("during respondOnText")
+            await message.channel.send(
+                "something just went wrong <@298235229095723008> check my logs pls"
+            )
 
     if "kathelp" in message.content:
         s = "Hi! I'm katbot. I'm entirely modular (except for responding to kathelp), here's what I'm currently running:\n```yaml\n"
