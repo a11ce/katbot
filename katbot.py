@@ -3,6 +3,7 @@ import os
 import discord
 import secret
 import logging
+import sys
 
 
 def log(text):
