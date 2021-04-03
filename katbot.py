@@ -45,6 +45,9 @@ async def on_message(message):
         except discord.errors.HTTPException:
             await message.channel.send(
                 "message was too long, are you sure you should be doing that?")
+        except SystemExit:
+            await message.channel.send("byebye")
+            exit()
         except:
             logging.exception("during respondOnText")
             await message.channel.send(
