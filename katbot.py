@@ -30,6 +30,9 @@ async def on_ready():
     log('We have logged in as {0.user}'.format(client))
     await client.change_presence(activity=discord.Activity(
         type=discord.ActivityType.listening, name="kathelp"))
+    if len(sys.argv) > 1:
+        await client.get_channel(int(sys.argv[1])
+                                 ).send("remote upgrade complete!")
 
 
 @client.event
@@ -39,8 +42,10 @@ async def on_message(message):
 
     for module in modules:
         try:
-            if (resp := module.respondOnText(message.content,
-                                             {'sender': message.author})):
+            if (resp := module.respondOnText(message.content, {
+                    'sender': message.author,
+                    'channel': message.channel
+            })):
                 await message.channel.send(resp)
         except discord.errors.HTTPException:
             await message.channel.send(

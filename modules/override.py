@@ -15,7 +15,8 @@ def respondOnText(messageText, messageData):
             if "pid" in messageText:
                 return os.getpid()
             if "remoteup" in messageText:
-                os.system("modules/remoteup.sh {}".format(os.getpid()))
+                os.system("modules/remoteup.sh {} {}".format(
+                    os.getpid(), messageData['channel'].id))
             if "hash" in messageText:
                 return str(
                     subprocess.check_output(
