@@ -14,4 +14,4 @@ def respondOnText(messageText, messageData):
             if "pid" in messageText:
                 return os.getpid()
             if "remoteup" in messageText:
-                os.system("./remoteup.sh {}".format(os.getpid()))
+                os.system("modules/remoteup.sh {}".format(os.getpid()))
