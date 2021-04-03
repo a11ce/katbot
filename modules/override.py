@@ -2,7 +2,7 @@ import socket
 import os
 import subprocess
 
-INFO = {'name': 'admin override', 'desc': 'only works when called by a11ce'}
+INFO = {'name': 'admin tools', 'desc': 'only works when called by a11ce'}
 
 
 def respondOnText(messageText, messageData):
@@ -17,5 +17,6 @@ def respondOnText(messageText, messageData):
             if "remoteup" in messageText:
                 os.system("modules/remoteup.sh {}".format(os.getpid()))
             if "hash" in messageText:
-                return subprocess.check_output(
-                    ['git', 'rev-parse', '--short', 'HEAD'])
+                return str(
+                    subprocess.check_output(
+                        ['git', 'rev-parse', '--short', 'HEAD']))
