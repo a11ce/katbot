@@ -13,3 +13,5 @@ def respondOnText(messageText, messageData):
                 return socket.gethostname()
             if "pid" in messageText:
                 return os.getpid()
+            if "remoteup" in messageText:
+                os.system("./remoteup.sh {}".format(os.getpid()))
