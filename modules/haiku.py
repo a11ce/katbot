@@ -1,6 +1,20 @@
-from nltk.corpus import cmudict
+# This is a hack because the servers katbot normally run on
+# seem to automatically delete nltk-downloaded data at
+# random times, so it's saved as a pickle bin instead.
+import pickle
+with open("cmudict.pkl", 'rb') as f:
+    cmudictconv = pickle.load(f)
+# if you're running a local copy and are able,
+# comment the above and uncomment these two lines:
+# from nltk.corpus import cmudict
+# cmudictconv = cmudict.dict()
+# The previous two lines plus the next 3 in a repl
+# were used to generate cmudict.pkl:
+# import pickle
+# with open("cmudict.pkl", 'wb') as f:
+#   pickle.dump(cmudictconv, f)
+
 import string
-cmudictconv = cmudict.dict()
 
 INFO = {'name': 'haiku', 'desc': 'haiku detection'}
 
