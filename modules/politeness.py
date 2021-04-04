@@ -8,9 +8,13 @@ INFO = {
 greetings = ["hi", "hello", "hey"]
 thankYous = ["thanks", "ty", "thank you"]
 youreWelcomes = ["you're welcome", "ofc", "no prob", "np", "yw", "any time"]
-
+goodnights = [
+    "night", "night night", "goodnight", "good night", "sleep well",
+    "sweet dreams", "gn", "nini"
+]
 # this is a weird model of human interaction huh
-mappings = [(greetings, greetings), (thankYous, youreWelcomes)]
+mappings = [(greetings, greetings), (thankYous, youreWelcomes),
+            (goodnights, goodnights)]
 
 
 def respondOnText(messageText, messageData):
