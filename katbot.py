@@ -64,7 +64,7 @@ async def on_message(message):
         s = "Hi! I'm katbot. I'm entirely modular (except for responding to kathelp), here's what I'm currently running:\n```yaml\n"
         for module in modules:
             s += "{}: {}\n".format(module.INFO['name'], module.INFO['desc'])
-        s += "```"
+        s += "```\n My source can be found here:\n<https://github.com/a11ce/katbot>"
         await message.channel.send(s)
 
 
