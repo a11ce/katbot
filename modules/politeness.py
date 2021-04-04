@@ -15,7 +15,8 @@ mappings = [(greetings, greetings), (thankYous, youreWelcomes)]
 
 def respondOnText(messageText, messageData):
     messageText = messageText.lower()
-    if "katbot" in messageText and "tell" not in messageText:
+    if (not messageData['sender'].bot
+        ) and "katbot" in messageText and "tell" not in messageText:
         for triggers, responses in mappings:
             if any(trigger in messageText for trigger in triggers):
                 return "{} <@{}>!".format(random.choice(responses),
