@@ -2,7 +2,7 @@
 # seem to automatically delete nltk-downloaded data at
 # random times, so it's saved as a pickle bin instead.
 import pickle
-with open("cmudict.pkl", 'rb') as f:
+with open("modules/cmudict.pkl", 'rb') as f:
     cmudictconv = pickle.load(f)
 # if you're running a local copy and are able,
 # comment the above and uncomment these two lines:
