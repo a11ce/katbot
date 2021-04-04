@@ -1,4 +1,4 @@
-# This is a hack because the servers katbot normally run on
+# This is a hack because the servers that katbot normally runs on
 # seem to automatically delete nltk-downloaded data at
 # random times, so it's saved as a pickle bin instead.
 import pickle
