@@ -16,7 +16,10 @@
 - Run with `python3 katbot.py` and make sure your copy is working correctly.
 - Read over `minimal.py` in `modules/` for an example of what your module needs. Currently, that means:
     - an info dict with a name and description 
-    - a `respondOnText` function which takes two arguments (`messageText` and `messageData`) and returns a string if KatBot should respond to the given message and `None`/`False` otherwise
+    - a `respondOnText` function which takes two arguments (`messageText` and `messageData`) and returns one of: 
+        - A string if KatBot should respond to the given message with a single message right away
+        - A list of `(responseMessage: str, delayInSeconds: int)`s if KatBot should respond with multiple spaced-out messages or delay her single response (use a 1-element list for that)
+        - `None`/`False` if the module shouldn't act on the message
 - Write your module, test it, and submit a PR!
 
 --- 
