@@ -21,7 +21,8 @@ def respondOnText(messageText, messageData):
                     random.choice([
                         "hi", "why do you hate me", "are you awake",
                         "tell me a joke", "are you gay", "do my homework",
-                        "i love you", "you're cute", "pog"
+                        "i love you", "you're cute", "pog",
+                        "gamer bot drop an L on <@203483343281455104>"
                     ]))
 
                 return [(futureHello, random.randint(30, 120))]
