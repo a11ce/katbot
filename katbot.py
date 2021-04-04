@@ -4,6 +4,7 @@ import discord
 import secret
 import logging
 import sys
+import asyncio
 
 
 def log(text):
@@ -36,6 +37,11 @@ async def on_ready():
                                  ).send("remote upgrade complete!")
 
 
+async def sendLater(message, channel, delay=0):
+    await asyncio.sleep(delay)
+    await channel.send(message)
+
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -47,7 +53,13 @@ async def on_message(message):
                     'sender': message.author,
                     'channel': message.channel
             })):
-                await message.channel.send(resp)
+                if isinstance(resp, str):
+                    await message.channel.send(resp)
+                elif isinstance(resp, list):
+                    for respMessage in resp:
+                        await sendLater(respMessage[0], message.channel,
+                                        respMessage[1])
+
         except discord.errors.HTTPException:
             await message.channel.send(
                 "message was too long, are you sure you should be doing that?")
