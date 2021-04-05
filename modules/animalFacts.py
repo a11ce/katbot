@@ -30,6 +30,8 @@ baseURL = "https://and-here-is-my-code.glitch.me/facts/"
 
 
 def respondOnText(messageText, messageData):
+    if "katbot what animals do you know" in messageText:
+        return " ".join(animals.keys())
     for animal, endpoint in animals.items():
         if animal in messageText.lower():
             text = list(requests.get(baseURL + endpoint).json().values())[0]
