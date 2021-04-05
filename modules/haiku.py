@@ -20,7 +20,8 @@ INFO = {'name': 'haiku', 'desc': 'haiku detection'}
 
 
 def syllables(word):
-    word = "".join([c for c in word.lower() if c not in string.punctuation])
+    word = "".join(
+        [c for c in word.lower().strip() if c not in string.punctuation])
     return len(
         [phoneme for phoneme in cmudictconv[word][0]
          if phoneme[-1].isdigit()]) if word in cmudictconv else False
@@ -35,7 +36,7 @@ def respondOnText(messageText, messageData):
     runningSum = 0
     runningString = ""
 
-    for word in messageText.split(" "):
+    for word in messageText.split():
         wordSyl = syllables(word)
         if not wordSyl:
             return
