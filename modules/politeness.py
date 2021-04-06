@@ -5,6 +5,7 @@ INFO = {
     'desc': 'responds to certain phrases when mentioned'
 }
 
+# phrase sets
 greetings = ["hi", "hello", "hey"]
 thankYous = ["thanks", "ty", "thank you"]
 youreWelcomes = ["you're welcome", "ofc", "no prob", "np", "yw", "any time"]
@@ -12,6 +13,12 @@ goodnights = [
     "night", "night night", "goodnight", "good night", "sleep well",
     "sweet dreams", "gn", "nini"
 ]
+
+# specific questions
+questions = [(["pronouns"],
+              "i like she/her, but anything neutral (they or it) is fine too!")
+             ]
+
 # this is a weird model of human interaction huh
 mappings = [(greetings, greetings), (thankYous, youreWelcomes),
             (goodnights, goodnights)]
@@ -25,3 +32,7 @@ def respondOnText(messageText, messageData):
             if any(trigger in messageText for trigger in triggers):
                 return "{} <@{}>!".format(random.choice(responses),
                                           messageData['sender'].id)
+        for question in questions:
+            if any(prompt in messageText
+                   for prompt in question[0]) and "?" in messageText:
+                return question[1]
