@@ -13,9 +13,9 @@ fudge_words = [
 
 def respondOnText(messageText, messageData):
     # matches: number of dice, dice size or F, addition with sign, possible opposition modifier
-    if (matched :=
-            re.findall("r([0-9]+)d([0-9]+|F)((?:\+|\-)[0-9]+)?(\-[0-9+])?",
-                       messageText)):
+    if (matched := re.findall(
+            "(?:r|!)([0-9]+)d([0-9]+|F)((?:\+|\-)[0-9]+)?(\-[0-9+])?",
+            messageText)):
         matched = matched[0]
         if matched[1] == "F":
             diceRolled = [
