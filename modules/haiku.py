@@ -18,10 +18,17 @@ import string
 
 INFO = {'name': 'haiku', 'desc': 'haiku detection'}
 
+# words that kabot doesnt know but should
+syllableOverrides = {'katbot': 2, 'katbots': 2, 'w': 1}
+
 
 def syllables(word):
     word = "".join(
         [c for c in word.lower().strip() if c not in string.punctuation])
+
+    if word in syllableOverrides:
+        return syllableOverrides[word]
+
     return len(
         [phoneme for phoneme in cmudictconv[word][0]
          if phoneme[-1].isdigit()]) if word in cmudictconv else False
