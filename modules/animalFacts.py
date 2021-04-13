@@ -33,7 +33,7 @@ def respondOnText(messageText, messageData):
     if "katbot what animals do you know" in messageText:
         return " ".join(animals.keys())
     for animal, endpoint in animals.items():
-        if animal in messageText.lower():
+        if animal in messageText.lower().split():
             text = list(requests.get(baseURL + endpoint).json().values())[0]
             if "the connotation of a cat" in text:
                 return "[CAT FACT HAS BEEN CENSORED]"
