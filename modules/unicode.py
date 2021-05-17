@@ -41,6 +41,16 @@ def getChars(n):
     return s
 
 
+def corruptText(string):
+    s = []
+    for c in string:
+        s.append(c)
+        s.extend([random.choice(diac) for _ in range(random.randint(10, 20))])
+    return ''.join(s)
+
+
 def respondOnText(messageText, messageData):
     if "unicode" in messageText.lower() and "katbot" in messageText.lower():
         return getChars(1999)
+    if messageText.startswith("katbot corrupt"):
+        return corruptText(messageText.split("katbot corrupt")[1].strip())
