@@ -15,9 +15,13 @@ goodnights = [
 ]
 
 # specific questions
-questions = [(["pronouns"],
-              "i like she/her, but anything neutral (they or it) is fine too!")
-             ]
+questions = [
+    (["pronouns"],
+     "i like she/her, but anything neutral (they or it) is fine too!"),
+]
+
+# absolute responses
+absoluteResponses = [(["poggers"], [("poggers!", 3)])]
 
 # this is a weird model of human interaction huh
 mappings = [(greetings, greetings), (thankYous, youreWelcomes),
@@ -36,3 +40,7 @@ def respondOnText(messageText, messageData):
             if any(prompt in messageText
                    for prompt in question[0]) and "?" in messageText:
                 return question[1]
+
+    for response in absoluteResponses:
+        if any(prompt in messageText for prompt in response[0]):
+            return response[1]
