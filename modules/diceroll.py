@@ -7,7 +7,8 @@ INFO = {
 }
 
 fudge_words = [
-    "Terrible", "Poor", "Mediocre", "Fair", "Good", "Great", "Superb"
+    "Terrible", "Poor", "Mediocre", "Average", "Fair", "Good", "Great",
+    "Superb", "Fantastic", "Epic", "Legendary"
 ]
 
 
