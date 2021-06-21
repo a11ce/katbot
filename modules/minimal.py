@@ -1,5 +1,12 @@
 # These are shown when the user runs kathelp
-INFO = {'name': 'example module', 'desc': 'responds to a secret phrase'}
+INFO = {
+    'name': 'example module',
+    'desc':
+    'responds to a secret phrase, say \'kathelp example module\' to find it!',
+    # this line is shown when the user requests more information about this module
+    # optional but recommended
+    'help': "the secret phrase is konstantin anna tatyana vasily olga tatyana!"
+}
 
 
 def respondOnText(messageText, messageData):

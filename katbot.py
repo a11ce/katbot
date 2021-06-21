@@ -73,11 +73,30 @@ async def on_message(message):
                 .format(module.INFO['name']))
 
     if "kathelp" in message.content:
-        s = "Hi! I'm katbot. I'm entirely modular (except for responding to kathelp), here's what I'm currently running:\n```yaml\n"
-        for module in modules:
-            s += "{}: {}\n".format(module.INFO['name'], module.INFO['desc'])
-        s += "```\n My source can be found here:\n<https://github.com/a11ce/katbot>"
-        await message.channel.send(s)
+        if len(message.content.split()) > 1:
+            # TODO better selection by name
+
+            if (requestedHelp :=
+                    message.content.split("kathelp")[1].strip()) in [
+                        module.INFO['name'] for module in modules
+                    ]:
+                for module in modules:
+                    if module.INFO['name'] == requestedHelp:
+                        if 'help' in module.INFO:
+                            await message.channel.send(
+                                "`help for {}:`\n {}".format(
+                                    requestedHelp, module.INFO['help']))
+                        else:
+                            await message.channel.send(
+                                "sorry! no help info for {}".format(
+                                    requestedHelp))
+        else:
+            s = "Hi! I'm katbot. I'm entirely modular (except for responding to kathelp), here's what I'm currently running:\n```yaml\n"
+            for module in modules:
+                s += "{}: {}\n".format(module.INFO['name'],
+                                       module.INFO['desc'])
+            s += "```\n My source can be found here:\n<https://github.com/a11ce/katbot>\n\nsay 'kathelp <module name>' for more information about a specific module! for example, try 'kathelp example module'"
+            await message.channel.send(s)
 
 
 client.run(secret.discordKey)
