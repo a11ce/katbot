@@ -1,6 +1,11 @@
 import random
 
-INFO = {'name': '8ball', 'desc': 'responds to 8ball <question>?'}
+INFO = {
+    'name': '8ball',
+    'desc': 'tell your future!',
+    'help':
+    'say `8ball <your question>?`\nfor example: `8ball will i pass math?` '
+}
 
 sayings = [
     "it is certain", "it is decidedly so", "without a doubt",

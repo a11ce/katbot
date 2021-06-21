@@ -2,8 +2,12 @@ import re
 import random
 
 INFO = {
-    'name': 'diceroll',
-    'desc': 'rolls on r{N}d{M}, where M can be "F" for fudge'
+    'name':
+    'diceroll',
+    'desc':
+    'rolls any-sided dice and fate/fudge dice!',
+    'help':
+    'say `r{N}d{M}`, where M can be "F" for fudge\n\nexamples: `r4dF` (fate), `r3d20` (ttrpg), `r1d3` (decide who pays for food)'
 }
 
 fudge_words = [

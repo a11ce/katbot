@@ -4,7 +4,9 @@ INFO = {
     'name':
     'unicoder',
     'desc':
-    'responds to messages containing "katbot" and "unicode" with a bunch of weirdly-rendering characters'
+    'uses strange unicode characters to corrupt messages',
+    'help':
+    'ask me for some unicode (ex: `hey katbot give me some unicode`) or say `katbot corrupt <your text>`'
 }
 
 diac = [

@@ -3,8 +3,12 @@ import random
 import re
 
 INFO = {
-    'name': 'tarot',
-    'desc': 'runs on tarot draw N (see github.com/a11ce/tarot)'
+    'name':
+    'tarot',
+    'desc':
+    'tell your future but with cards!',
+    'help':
+    'say `tarot draw N` where N is a number. also check out github.com/a11ce/tarot'
 }
 
 cards = tarot.loadCards("modules/tarot/cards/cards.csv")

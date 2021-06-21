@@ -16,7 +16,14 @@ with open("modules/cmudict.pkl", 'rb') as f:
 
 import string
 
-INFO = {'name': 'haiku', 'desc': 'haiku detection'}
+INFO = {
+    'name':
+    'haiku',
+    'desc':
+    'haiku detection',
+    'help':
+    'i can automatically detect and point out when you write a haiku! if i get something wrong (especially text abbreviations), please message <@298235229095723008> and let her know'
+}
 
 # words that kabot doesnt know but should
 syllableOverrides = {'katbot': 2, 'katbots': 2, 'w': 1}

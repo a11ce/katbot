@@ -1,8 +1,12 @@
 import random
 
 INFO = {
-    'name': 'politeness',
-    'desc': 'responds to certain phrases when mentioned'
+    'name':
+    'politeness',
+    'desc':
+    'responds to certain phrases',
+    'help':
+    'try saying hi, goodnight, or asking me about my pronouns! i also like saying poggers'
 }
 
 # phrase sets

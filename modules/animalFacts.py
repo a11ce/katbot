@@ -1,7 +1,5 @@
 import requests
 
-INFO = {'name': 'animal facts', 'desc': ':)'}
-
 animals = {
     'lizard': 'lizards',
     'raccoon': 'raccoon',
@@ -24,6 +22,12 @@ animals = {
     'orca': 'killerwhale',
     'giraffe': 'giraffe',
     'dolphin': 'dolphin',
+}
+
+INFO = {
+    'name': 'animal facts',
+    'desc': ':)',
+    'help': 'here are the animals i know: {}'.format(animals.keys())
 }
 
 baseURL = "https://and-here-is-my-code.glitch.me/facts/"
