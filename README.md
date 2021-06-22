@@ -19,6 +19,8 @@
     - a `respondOnText` function which takes two arguments (`messageText` and `messageData`) and returns one of: 
         - A string if KatBot should respond to the given message with a single message right away
         - A list of `(responseMessage: str, delayInSeconds: int)`s if KatBot should respond with multiple spaced-out messages or delay her single response (use a 1-element list for that)
+        - A dict with any of:
+            - Key 'react' and value a list of emojis to add as reactions to the message
         - `None`/`False` if the module shouldn't act on the message
 - Write your module, test it, and submit a PR!
 

@@ -51,7 +51,7 @@ async def on_message(message):
         try:
             if (resp := module.respondOnText(message.content, {
                     'sender': message.author,
-                    'channel': message.channel
+                    'channel': message.channel,
             })):
                 if isinstance(resp, str):
                     await message.channel.send(resp)
@@ -59,8 +59,13 @@ async def on_message(message):
                     for respMessage in resp:
                         await sendLater(respMessage[0], message.channel,
                                         respMessage[1])
+                elif isinstance(resp, dict):
+                    if 'reacts' in resp:
+                        for react in resp['reacts']:
+                            await message.add_reaction(react)
 
-        except discord.errors.HTTPException:
+        except discord.errors.HTTPException as e:
+            print(e)
             await message.channel.send(
                 "message was too long, are you sure you should be doing that?")
         except SystemExit:
