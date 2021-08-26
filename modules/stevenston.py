@@ -3,7 +3,7 @@ import random
 INFO = {'name': 'stevenston', 'desc': "interactions for katbot's home server"}
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     sender = messageData['sender'].id
 
     # claire

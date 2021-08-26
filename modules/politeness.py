@@ -32,7 +32,7 @@ mappings = [(greetings, greetings), (thankYous, youreWelcomes),
             (goodnights, goodnights)]
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     messageText = messageText.lower()
     if (not messageData['sender'].bot
         ) and "katbot" in messageText and "tell" not in messageText:

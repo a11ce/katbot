@@ -9,7 +9,7 @@ INFO = {
 }
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     # messageText is a string with the sent message
     # messageData is a dict with any other helpful data,
     #   feel free to add to it in katbot.py (search for module.respondOnText)

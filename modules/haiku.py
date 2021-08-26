@@ -46,7 +46,7 @@ def syllables(word):
 # a haiku is not
 # defined by just syllables
 # except in lit class
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     runningSum = 0
     runningString = ""
 

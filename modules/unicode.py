@@ -51,7 +51,7 @@ def corruptText(string):
     return ''.join(s)
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     if "unicode" in messageText.lower() and "katbot" in messageText.lower():
         return getChars(1999)
     if messageText.startswith("katbot corrupt"):

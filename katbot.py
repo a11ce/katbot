@@ -46,13 +46,15 @@ async def sendLater(message, channel, delay=0):
 async def on_message(message):
     if message.author == client.user:
         return
-
     for module in modules:
         try:
-            if (resp := module.respondOnText(message.content, {
+            resp = await module.respondOnText(
+                message.content, {
                     'sender': message.author,
                     'channel': message.channel,
-            })):
+                    'voice': message.author.voice,
+                })
+            if (resp):
                 if isinstance(resp, str):
                     await message.channel.send(resp)
                 elif isinstance(resp, list):

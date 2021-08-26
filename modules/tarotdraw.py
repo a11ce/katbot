@@ -14,7 +14,7 @@ INFO = {
 cards = tarot.loadCards("modules/tarot/cards/cards.csv")
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     if (matched := re.findall("tarot draw ([0-9]+)", messageText)):
         count = int(matched[0])
         s = "```\n"

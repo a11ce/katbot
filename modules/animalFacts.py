@@ -33,7 +33,7 @@ INFO = {
 baseURL = "https://and-here-is-my-code.glitch.me/facts/"
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     if "katbot what animals do you know" in messageText:
         return " ".join(animals.keys())
     for animal, endpoint in animals.items():

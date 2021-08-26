@@ -5,7 +5,7 @@ import subprocess
 INFO = {'name': 'admin tools', 'desc': 'only works when called by a11ce'}
 
 
-def respondOnText(messageText, messageData):
+async def respondOnText(messageText, messageData):
     if messageData['sender'].id == 298235229095723008:
         if messageText.startswith("katbot override"):
             if "sigkill" in messageText:
