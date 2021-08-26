@@ -22,6 +22,7 @@
         - A dict with any of:
             - Key 'react' and value a list of emojis to add as reactions to the message
         - `None`/`False` if the module shouldn't act on the message
+        - An asynchronous function (coroutine) which will be awaited upon returning
 - Write your module, test it, and submit a PR!
 
 --- 

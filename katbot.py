@@ -65,6 +65,8 @@ async def on_message(message):
                     if 'reacts' in resp:
                         for react in resp['reacts']:
                             await message.add_reaction(react)
+                elif callable(resp):
+                    await resp()
 
         except discord.errors.HTTPException as e:
             print(e)
