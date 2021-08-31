@@ -22,6 +22,7 @@ goodnights = [
 questions = [
     (["pronouns"],
      "i like she/her, but anything neutral (they or it) is fine too!"),
+    (["color", "colour"], "purple!")
 ]
 
 # absolute responses
