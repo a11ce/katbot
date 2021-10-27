@@ -12,9 +12,13 @@ INFO = {
     'dm me `ask [channelCode] [your question]` and i\'ll ask it for you. this isn\'t anonymous to admins though! to respond to a question, begin your message with @[codename]'
 }
 
+# TODO something better
 channelCodes = {
     'a11ce': (298235375476932618, 902451668166250506),
-    'stevenston': (902773710547714078, 902451668166250506)
+    'stevenston': (902773710547714078, 902451668166250506),
+    'ask-an-instructor': (887755351385063436, 902810584981061633),
+    'homework-questions': (887755477134504007, 902810584981061633),
+    'power-user-questions': (887755295252701255, 902810584981061633),
 }
 
 cacheLoc = "cache/anonAsk.p"
