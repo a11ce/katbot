@@ -21,3 +21,7 @@ async def respondOnText(messageText, messageData):
                 return str(
                     subprocess.check_output(
                         ['git', 'rev-parse', '--short', 'HEAD']))
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)

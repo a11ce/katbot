@@ -46,40 +46,63 @@ async def sendLater(message, channel, delay=0):
 async def on_message(message):
     if message.author == client.user:
         return
-    for module in modules:
-        try:
-            resp = await module.respondOnText(
-                message.content, {
-                    'sender': message.author,
-                    'channel': message.channel,
-                    'voice': message.author.voice,
-                })
-            if (resp):
-                if isinstance(resp, str):
-                    await message.channel.send(resp)
-                elif isinstance(resp, list):
-                    for respMessage in resp:
-                        await sendLater(respMessage[0], message.channel,
-                                        respMessage[1])
-                elif isinstance(resp, dict):
-                    if 'reacts' in resp:
-                        for react in resp['reacts']:
-                            await message.add_reaction(react)
-                elif callable(resp):
-                    await resp()
 
-        except discord.errors.HTTPException as e:
-            print(e)
-            await message.channel.send(
-                "message was too long, are you sure you should be doing that?")
-        except SystemExit:
-            await message.channel.send("byebye")
-            exit()
-        except:
-            logging.exception("during respondOnText")
-            await message.channel.send(
-                "something just went wrong in module {} <@298235229095723008> check my logs pls"
-                .format(module.INFO['name']))
+    for module in modules:
+        resp = None
+        if isinstance(message.channel, discord.DMChannel):
+            if hasattr(module, 'respondOnDM'):
+                try:
+                    resp = await module.respondOnDM(message.content, {
+                        'sender': message.author,
+                        'client': client
+                    })
+                except:
+                    logging.exception("during respondOnText")
+                    await message.channel.send(
+                        "something just went wrong, please tell @a11ce to check my logs"
+                    )
+
+        else:
+            try:
+                resp = await module.respondOnText(
+                    message.content, {
+                        'sender': message.author,
+                        'channel': message.channel,
+                        'voice': message.author.voice,
+                        'client': client,
+                        'message': message,
+                    })
+            except discord.errors.HTTPException as e:
+                print(e)
+                await message.channel.send(
+                    "message was too long, are you sure you should be doing that?"
+                )
+            except SystemExit:
+                await message.channel.send("byebye")
+                exit()
+            except:
+                logging.exception("during respondOnText")
+                await message.channel.send(
+                    "something just went wrong in module {} <@298235229095723008> check my logs pls"
+                    .format(module.INFO['name']))
+        if (resp):
+            if isinstance(resp, str):
+                await message.channel.send(resp)
+            elif isinstance(resp, list):
+                for respElem in resp:
+                    if isinstance(respElem, tuple):
+                        await sendLater(respElem[0], message.channel,
+                                        respElem[1])
+                    elif isinstance(respElem, str):
+                        await message.channel.send(respElem)
+                    elif callable(respElem):
+                        await respElem()
+            elif isinstance(resp, dict):
+                if 'reacts' in resp:
+                    for react in resp['reacts']:
+                        await message.add_reaction(react)
+            elif callable(resp):
+                await resp()
 
     if "kathelp" in message.content:
         if len(message.content.split()) > 1:

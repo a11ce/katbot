@@ -21,3 +21,7 @@ async def respondOnText(messageText, messageData):
         for _ in range(count):
             s += "{}\n\n".format(tarot.as60WidthLines(random.choice(cards)))
         return s + "\n```"
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)

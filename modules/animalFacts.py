@@ -45,3 +45,7 @@ async def respondOnText(messageText, messageData):
             if "the connotation of a cat" in text:
                 return "[CAT FACT HAS BEEN CENSORED]"
             return text
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)

@@ -21,3 +21,7 @@ sayings = [
 async def respondOnText(messageText, messageData):
     if "8ball" in messageText and "?" in messageText:
         return "🎱 {} ✨".format(random.choice(sayings))
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)

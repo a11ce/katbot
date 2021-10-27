@@ -56,3 +56,7 @@ async def respondOnText(messageText, messageData):
         return getChars(1999)
     if messageText.startswith("katbot corrupt"):
         return corruptText(messageText.split("katbot corrupt")[1].strip())
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)

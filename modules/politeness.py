@@ -33,6 +33,10 @@ mappings = [(greetings, greetings), (thankYous, youreWelcomes),
             (goodnights, goodnights)]
 
 
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)
+
+
 async def respondOnText(messageText, messageData):
     messageText = messageText.lower()
     if (not messageData['sender'].bot
