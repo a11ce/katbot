@@ -49,3 +49,7 @@ async def respondOnText(messageText, messageData):
             return "`{}`\n**{}** ({}{})".format(" ".join(map(str, diceRolled)),
                                                 total, sum(diceRolled),
                                                 matched[2])
+
+
+async def respondOnDM(messageText, messageData):
+    return await respondOnText(messageText, messageData)
