@@ -42,11 +42,47 @@ async def sendLater(message, channel, delay=0):
     await channel.send(message)
 
 
+async def handleResp(resp, message):
+    if isinstance(resp, str):
+        await message.channel.send(resp)
+    elif isinstance(resp, list):
+        for respElem in resp:
+            if isinstance(respElem, tuple):
+                await sendLater(respElem[0], message.channel, respElem[1])
+            elif isinstance(respElem, str):
+                await message.channel.send(respElem)
+            elif callable(respElem):
+                await respElem()
+    elif isinstance(resp, dict):
+        if 'reacts' in resp:
+            for react in resp['reacts']:
+                await message.add_reaction(react)
+    elif callable(resp):
+        await resp()
+
+
+@client.event
+async def on_message_delete(message):
+    for module in modules:
+        resp = None
+        if hasattr(module, 'respondOnDelete'):
+            try:
+                resp = await module.respondOnDelete(message)
+            except:
+                logging.exception("during respondOnDelete")
+                await message.channel.send(
+                    "something just went wrong, please tell @a11ce to check my logs"
+                )
+        if (resp):
+            await handleResp(resp, message)
+
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
 
+    # TODO combine with others on_s
     for module in modules:
         resp = None
         if isinstance(message.channel, discord.DMChannel):
@@ -86,23 +122,7 @@ async def on_message(message):
                     "something just went wrong in module {} <@298235229095723008> check my logs pls"
                     .format(module.INFO['name']))
         if (resp):
-            if isinstance(resp, str):
-                await message.channel.send(resp)
-            elif isinstance(resp, list):
-                for respElem in resp:
-                    if isinstance(respElem, tuple):
-                        await sendLater(respElem[0], message.channel,
-                                        respElem[1])
-                    elif isinstance(respElem, str):
-                        await message.channel.send(respElem)
-                    elif callable(respElem):
-                        await respElem()
-            elif isinstance(resp, dict):
-                if 'reacts' in resp:
-                    for react in resp['reacts']:
-                        await message.add_reaction(react)
-            elif callable(resp):
-                await resp()
+            await handleResp(resp, message)
 
     if "kathelp" in message.content:
         if len(message.content.split()) > 1:

@@ -3,6 +3,16 @@ import random
 INFO = {'name': 'stevenston', 'desc': "interactions for katbot's home server"}
 
 
+async def respondOnDelete(message):
+    if message.author.id == 203483343281455104:
+        return "dilan moment:\n> {}".format(message.content)
+    elif message.author.id == 827458123551604756 and "dilan moment" in message.content:
+        return "dilan moment (meta):\n> {}".format(
+            message.content.split(">")[-1])
+    #print(message)
+    #print(member)
+
+
 async def respondOnText(messageText, messageData):
     sender = messageData['sender'].id
 
