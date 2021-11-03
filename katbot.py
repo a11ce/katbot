@@ -5,6 +5,7 @@ import secret
 import logging
 import sys
 import asyncio
+import subprocess
 
 
 def log(text):
@@ -33,8 +34,10 @@ async def on_ready():
     await client.change_presence(activity=discord.Activity(
         type=discord.ActivityType.listening, name="kathelp"))
     if len(sys.argv) > 1:
-        await client.get_channel(int(sys.argv[1])
-                                 ).send("remote upgrade complete!")
+        await client.get_channel(int(sys.argv[1])).send(
+            "remote upgrade complete! last change:\n> {}".format(
+                subprocess.check_output(['git', 'show', '-s', '--format=%s'
+                                         ]).decode('utf-8').strip()))
 
 
 async def sendLater(message, channel, delay=0):
