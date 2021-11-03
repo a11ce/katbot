@@ -22,7 +22,7 @@ async def respondOnText(messageText, messageData):
                      random.randint(10, 30))]
 
         # dilan. also reaction test
-        if sender == 203483343281455104 and (not random.randint(0, 20)):
+        if sender == 203483343281455104 and (not random.randint(0, 50)):
             return {'reacts': ["🇨", "🇷", "🇮", "🇳", "🇬", "🇪"]}
 
         # gamerbot
