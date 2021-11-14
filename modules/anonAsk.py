@@ -65,6 +65,7 @@ async def respondOnDM(messageText, messageData):
             await messageData['client'].get_channel(generalLogs).send(
                 "{} responds to {} ({})\n> {}".format(messageData['sender'],
                                                       name, user, messageText))
+            return "response sent to {}".format(name)
 
     if messageText.split()[0] == 'ask':
 
