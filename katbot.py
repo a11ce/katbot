@@ -25,7 +25,9 @@ def loadModules():
 
 
 modules = loadModules()
-client = discord.Client()
+clientIntents = discord.Intents.default()
+clientIntents.members = True
+client = discord.Client(intents=clientIntents)
 
 
 @client.event
@@ -84,6 +86,9 @@ async def on_message_delete(message):
 async def on_message(message):
     if message.author == client.user:
         return
+    if isinstance(message.channel, discord.DMChannel):
+        await client.get_channel(909345223505739798).send(
+            "dm from {}:\n> {}".format(message.author, message.content))
 
     # TODO combine with others on_s
     for module in modules:
