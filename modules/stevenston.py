@@ -7,9 +7,9 @@ async def respondOnDelete(message):
     if message.guild.id == 706345833750069260:
         if message.author.id == 203483343281455104:
             return "dilan moment:\n> {}".format(message.content)
-        elif message.author.id == 827458123551604756 and "dilan moment" in message.content:
-            return "dilan moment (meta):\n> {}".format(
-                message.content.split(">")[-1])
+        #elif message.author.id == 827458123551604756 and "dilan moment" in message.content:
+        #    return "dilan moment (meta):\n> {}".format(
+        #        message.content.split(">")[-1])
 
 
 async def respondOnText(messageText, messageData):
