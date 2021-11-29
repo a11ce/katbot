@@ -25,6 +25,10 @@
         - An asynchronous function (coroutine) which will be awaited upon returning
 - Write your module, test it, and submit a PR!
 
+## Reviews
+
+- "Better than Gamer Bot" - dilanx
+
 --- 
 
 All contributions are welcome by pull request or issue.
