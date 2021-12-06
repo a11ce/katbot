@@ -20,9 +20,18 @@ async def respondOnText(messageText, messageData):
             return [("<@396422982857392139> you're addicted to bedwars",
                      random.randint(10, 30))]
 
-        # dilan. also reaction test
-        if sender == 203483343281455104 and (not random.randint(0, 50)):
-            return {'reacts': ["🇨", "🇷", "🇮", "🇳", "🇬", "🇪"]}
+        if (not random.randint(0, 100)):
+            return {
+                'reacts':
+                random.choice([["🇨", "🇷", "🇮", "🇳", "🇬", "🇪"],
+                               [
+                                   "🇧",
+                                   "🇦",
+                                   "🇸",
+                                   "🇪",
+                                   "🇩",
+                               ], ["⭐"]])
+            }
 
         # gamerbot
         if sender == 813921893567692820:
