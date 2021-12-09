@@ -16,7 +16,7 @@ async def respondOnText(messageText, messageData):
                 inp.write(matched[0])
             subprocess.run(["racket", "modules/racket-eval.rkt"])
             with open("modules/racket-eval/out.txt", "r") as outp:
-                return "this module is **very experimental**. please avoid running potentially destructive programs. if you feel a need to poke at the edges of the (Racket) sandbox, you may do so by attempting to gather information about the environment. (n.b. i'm not even on a11ce's computer!)\n> " + "> ".join(
+                return "this module is **very experimental**. please avoid running potentially destructive programs. \n> " + "> ".join(
                     outp.readlines())
 
         elif len(matched) == 0:
