@@ -7,7 +7,7 @@ animals = {
     'sheep': 'sheep',
     'dingo': 'dingo',
     'camel': 'camel',
-    'crab': 'crab',
+    #'crab': 'crab',
     'cow': 'cow',
     'hippo': 'hippo',
     'fish': 'fish',
