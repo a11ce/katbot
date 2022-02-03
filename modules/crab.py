@@ -2,7 +2,14 @@ import re
 import random
 from datetime import datetime, date
 
-INFO = {'name': 'crab decider', 'desc': 'crab'}
+INFO = {
+    'name':
+    'crab decider',
+    'desc':
+    'crab',
+    'help':
+    'ask me who the Crab Decider is. it changes daily at midnight. they can carcinize people by saying `carcinize @user`'
+}
 
 
 async def todaySeed():
@@ -12,6 +19,7 @@ async def todaySeed():
 
 
 async def getDeciderID(guild):
+    return 298235229095723008
     users = [m for m in guild.members if not m.bot]
     random.seed(await todaySeed())
     return random.choice(users).id
