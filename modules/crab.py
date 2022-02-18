@@ -19,7 +19,6 @@ async def todaySeed():
 
 
 async def getDeciderID(guild):
-    return 298235229095723008
     users = [m for m in guild.members if not m.bot]
     random.seed(await todaySeed())
     return random.choice(users).id
