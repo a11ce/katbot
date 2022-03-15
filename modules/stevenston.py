@@ -1,8 +1,9 @@
 import random
-import spacy
-import pyinflect
+#import spacy
+#import pyinflect
 
 INFO = {'name': 'stevenston', 'desc': "interactions for katbot's home server"}
+
 
 #async def respondOnDelete(message):
 #    if message.guild.id == 706345833750069260:
@@ -13,9 +14,7 @@ INFO = {'name': 'stevenston', 'desc': "interactions for katbot's home server"}
 #                message.content.split(">")[-1])
 #
 
-nlp = spacy.load('en_core_web_sm')
-
-
+#nlp = spacy.load('en_core_web_sm')
 async def respondOnText(messageText, messageData):
     if messageData['message'].guild.id == 706345833750069260:
         sender = messageData['sender'].id
@@ -30,18 +29,18 @@ async def respondOnText(messageText, messageData):
             return pstr
 
         #print(messageText)
-        if (not random.randint(0, 20)):
-            tokens = nlp(messageText)
-            for token in tokens:
-                if token.pos_ == 'VERB':
-                    for item in token.children:
-                        if (item.dep_ == "dobj" or item.dep_ == "dative"):
-                            vp = str(token._.inflect("VBD"))
-                            if vp == "None":
-                                vp = str(token) + "ed"
-                        #print(vp)
-                            return "i " + vp + " your mom's " + str(
-                                item) + " last night"
+        #if (not random.randint(0, 20)):
+        #    tokens = nlp(messageText)
+        #    for token in tokens:
+        #        if token.pos_ == 'VERB':
+        #            for item in token.children:
+        #                if (item.dep_ == "dobj" or item.dep_ == "dative"):
+        #                    vp = str(token._.inflect("VBD"))
+        #                    if vp == "None":
+        #                        vp = str(token) + "ed"
+        #                #print(vp)
+        #                    return "i " + vp + " your mom's " + str(
+        #                        item) + " last night"
 
         # claire
         if sender == 396422982857392139 and messageText.startswith("s!bw"):
