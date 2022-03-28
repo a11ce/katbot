@@ -17,6 +17,7 @@ goodnights = [
     "night", "night night", "goodnight", "good night", "sleep well",
     "sweet dreams", "gn", "nini"
 ]
+meows = ["meow", "mew", "mraow"]
 
 # specific questions
 questions = [
@@ -30,7 +31,7 @@ absoluteResponses = [(["poggers"], [("poggers!", 3)])]
 
 # this is a weird model of human interaction huh
 mappings = [(greetings, greetings), (thankYous, youreWelcomes),
-            (goodnights, goodnights)]
+            (goodnights, goodnights), (meows, meows)]
 
 
 async def respondOnDM(messageText, messageData):
