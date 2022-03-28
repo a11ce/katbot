@@ -50,20 +50,17 @@ async def sendLater(message, channel, delay=0):
 async def handleResp(resp, message):
     if isinstance(resp, str):
         await message.channel.send(resp)
-    elif isinstance(resp, list):
-        for respElem in resp:
-            if isinstance(respElem, tuple):
-                await sendLater(respElem[0], message.channel, respElem[1])
-            elif isinstance(respElem, str):
-                await message.channel.send(respElem)
-            elif callable(respElem):
-                await respElem()
+    if isinstance(resp, tuple):
+        await sendLater(resp[0], message.channel, resp[1])
     elif isinstance(resp, dict):
         if 'reacts' in resp:
             for react in resp['reacts']:
                 await message.add_reaction(react)
     elif callable(resp):
         await resp()
+    elif isinstance(resp, list):
+        for respElem in resp:
+            await handleResp(respElem, message)
 
 
 @client.event
