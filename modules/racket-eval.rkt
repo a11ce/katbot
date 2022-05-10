@@ -1,16 +1,21 @@
 #lang racket
 (require racket/sandbox)
 
-(define prog (file->list "modules/racket-eval/in.rkt"))
+(define prog
+  (call-with-input-file "modules/racket-eval/in.rkt"
+                        (lambda (in) (port->list read in))))
+;(define prog (file->list "racket-eval/in.rkt" read-syntax))
+(displayln prog)
+(define out-port
+  (open-output-file "modules/racket-eval/out.txt" #:exists 'replace))
+(define err-port
+  (open-output-file "modules/racket-eval/err.txt" #:exists 'replace))
 
-(define out-port (open-output-file "modules/racket-eval/out.txt"
-                                   #:exists 'replace))
-(define evaler
-  (parameterize
-      ([sandbox-output out-port])
-    (make-evaluator 'racket)))
+(parameterize ([current-output-port out-port] [current-error-port err-port])
+  (define evaler (make-evaluator 'racket))
 
-(for ([exp prog])
-  (evaler exp))
+  (for ([exp prog])
+    (displayln (evaler exp)))
 
-(close-output-port out-port)
+  (close-output-port out-port)
+  (close-output-port err-port))
