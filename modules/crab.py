@@ -19,9 +19,12 @@ async def todaySeed():
 
 
 async def getDeciderID(guild):
+    randState = random.getstate()
     users = [m for m in guild.members if not m.bot]
     random.seed(await todaySeed())
-    return random.choice(users).id
+    decID = random.choice(users).id
+    random.setstate(randState)
+    return decID
 
 
 async def respondOnText(messageText, messageData):
