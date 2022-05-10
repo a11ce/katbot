@@ -15,7 +15,7 @@ def log(text):
 def loadModules():
     modules = []
     for module in os.listdir("modules"):
-        if "__" not in module and ".py" in module:
+        if "__" not in module and ".py" in module and "racket" not in module:
             modules.append(
                 importlib.import_module('.' + module[:-3], 'modules'))
     log("Loaded {} modules".format(len(modules)))
