@@ -32,7 +32,7 @@ async def respondOnText(messageText, messageData):
 
     if all(map(lambda s: s in messageText.lower(), ["who", "crab"])):
         return "<@{}> is the Crab Decider today!".format(deciderID)
-    if (matched := re.findall("carcinize *<@!([0-9]+)>", messageText.lower())):
+    if (matched := re.findall("carcinize *<@([0-9]+)>", messageText.lower())):
         if messageData['sender'].id == deciderID:
             matched = matched[0]
             await messageData['message'].guild.get_member(int(matched)
