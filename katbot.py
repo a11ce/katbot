@@ -116,7 +116,7 @@ async def on_message(message):
             except discord.errors.HTTPException as e:
                 print(e)
                 await message.channel.send(
-                    "message was too long, are you sure you should be doing that?"
+                    f"i'm sorry <@{message.author.id}>, i'm afraid i can't do that"
                 )
             except SystemExit:
                 await message.channel.send("byebye")
