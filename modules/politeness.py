@@ -20,11 +20,8 @@ goodnights = [
 meows = ["meow", "mew", "mraow"]
 
 # specific questions
-questions = [
-    (["pronouns"],
-     "i like she/her, but anything neutral (they or it) is fine too!"),
-    (["color", "colour"], "purple!")
-]
+questions = [(["pronouns"], "i like she/her or it/its!"),
+             (["color", "colour"], "purple!")]
 
 # absolute responses
 absoluteResponses = [(["poggers"], [("poggers!", 3)])]
