@@ -25,8 +25,10 @@ def loadModules():
 
 
 modules = loadModules()
+
 clientIntents = discord.Intents.default()
 clientIntents.members = True
+clientIntents.message_content = True
 client = discord.Client(intents=clientIntents)
 
 
