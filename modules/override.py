@@ -13,7 +13,7 @@ async def respondOnText(messageText, messageData):
             if "whereareyou" in messageText:
                 return socket.gethostname()
             if "pid" in messageText:
-                return os.getpid()
+                return str(os.getpid())
             if "remoteup" in messageText:
                 os.system("modules/remoteup.sh {} {}".format(
                     os.getpid(), messageData['channel'].id))
