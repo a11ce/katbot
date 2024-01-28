@@ -9,7 +9,6 @@ INFO = {'name': 'text sender', 'desc': ':)'}
 async def respondOnText(messageText, messageData):
     knownNums = katVault.load(blank={})
 
-    print(messageText)
     if "katbot list known numbers" in messageText:
         return str(knownNums)
 
