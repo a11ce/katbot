@@ -99,7 +99,6 @@ async def on_message(message):
                     message.content, {
                         'sender': message.author,
                         'channel': message.channel,
-                        'voice': message.author.voice,
                         'client': client,
                         'message': message,
                     })
